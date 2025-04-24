@@ -1,11 +1,11 @@
 
-{ config, pkgs, inputs, home-manager, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
+      # inputs.home-manager.nixosModules.default
     ];
 
   # Bootloader.
@@ -90,12 +90,12 @@
     ];
   };
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "wyatt" = import ./home.nix;
-    };
-  };
+  # home-manager = {
+  #   extraSpecialArgs = { inherit inputs; };
+  #   users = {
+  #     "wyatt" = import ./home.nix;
+  #   };
+  # };
 
   # Install firefox.
   programs.starship.enable = true;

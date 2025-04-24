@@ -3,10 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # home-manager = {
+    #   url = "github:nix-community/home-manager";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
@@ -14,13 +14,13 @@
     # it's a better practice than "default" shown in the video
     nixosConfigurations = {
       fenrir = nixpkgs.lib.nixosSystem {
-        extraSpecialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs;};
         modules = [
           ./hosts/fenrir/configuration.nix
         ];
       };
       jormungandr = nixpkgs.lib.nixosSystem {
-        extraSpecialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs;};
         modules = [
           ./hosts/jormungandr/configuration.nix
         ];
