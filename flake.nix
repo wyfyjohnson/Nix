@@ -24,7 +24,7 @@
         modules = [
           ./hosts/jormungandr/configuration.nix
         ];
-      }
+      };
     };
   };
 }
