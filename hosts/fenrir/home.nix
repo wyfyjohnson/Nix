@@ -68,9 +68,12 @@
   #  /etc/profiles/per-user/wyatt/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "helix";
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # Services
+  services.picom.enable = true;
 }
