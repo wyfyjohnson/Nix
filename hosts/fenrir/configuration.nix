@@ -53,7 +53,7 @@
 
   # Fonts
   fonts.packages = with pkgs; [
-    nerd-fonts.jetbrainsmono
+    nerd-fonts.jetbrains-mono
     liberation_ttf
   ];
 
