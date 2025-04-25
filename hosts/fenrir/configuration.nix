@@ -51,6 +51,12 @@
   services.xserver.desktopManager.cinnamon.enable = true;
   services.xserver.windowManager.qtile.enable = true;
 
+  # Fonts
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Literation"  ]; })
+    liberation_ttf
+  ];
+
 
   # Configure keymap in X11
   services.xserver.xkb = {
