@@ -98,6 +98,8 @@
       ls = "eza -1 --icons";
       ff = "fastfetch";
       jormungandr = "ssh wyatt@192.168.69.100";
+      yt-music = "yt-dlp -x --audio-format opus --replace-in-metadata uploader ' - Topic' '' --parse-metadata '%(playlist_index)s:%(meta_track)s' --parse-metadata '%(uploader)s:%(meta_album_artist)s' --embed-metadata  --format 'bestaudio/best' --audio-quality 0 -o '~/Downloads/Music/%(uploader)s/%(album)s/%(playlist_index)s - %(title)s.%(ext)s' --print '%(uploader)s - %(album)s - %(playlist_index)s %(title)s' --no-simulate";
+      :q = "exit";
     };
   };
 
@@ -113,6 +115,7 @@
     cmus
     eza
     fastfetch
+    flameshot
     ghostty
     git
     helix
@@ -127,6 +130,7 @@
     vivaldi
     webcord
     wget
+    yt-dlp
   ];
 
   # Enable the OpenSSH daemon.
