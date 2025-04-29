@@ -5,7 +5,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      # inputs.home-manager.nixosModules.default
     ];
 
   # Bootloader.
@@ -13,7 +12,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.luks.devices."luks-a9033c1c-95f0-47b0-901e-aca315437e9f".device = "/dev/disk/by-uuid/a9033c1c-95f0-47b0-901e-aca315437e9f";
-  networking.hostName = "fenrir"; # Define your hostname.
+  networking.hostName = "fenrir";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable networking
@@ -40,14 +39,14 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver.enable = true; # desktop
 
   # Enable the Cinnamon Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.cinnamon.enable = true;
-  services.xserver.windowManager.qtile.enable = true;
+  services.xserver.displayManager.lightdm.enable = true; # desktop
+  services.xserver.desktopManager.cinnamon.enable = true; # desktop
+  services.xserver.windowManager.qtile.enable = true; # desktop
 
-  # Fonts
+  # Fonts ### DEFAULTS
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
@@ -61,6 +60,11 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -78,28 +82,21 @@
     description = "wyatt";
     extraGroups = [ "input" "video" "libvirtd" "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  thunderbird
+     ##they go here##
     ];
   };
 
-  # home-manager = {
-  #   extraSpecialArgs = { inherit inputs; };
-  #   users = {
-  #     "wyatt" = import ./home.nix;
-  #   };
-  # };
-
   # Install firefox.
-  programs.starship.enable = true;
-  programs.steam.enable = true;
-  programs.kdeconnect.enable = true;
+  programs.starship.enable = true; # user
+  programs.steam.enable = true; # gaming
+  programs.kdeconnect.enable = true; # user
   programs.bash = {
     shellAliases = {
       ls = "eza -1 --icons";
       ff = "fastfetch";
       jormungandr = "ssh wyatt@192.168.69.100";
       yt-music = "yt-dlp -x --audio-format opus --replace-in-metadata uploader ' - Topic' '' --parse-metadata '%(playlist_index)s:%(meta_track)s' --parse-metadata '%(uploader)s:%(meta_album_artist)s' --embed-metadata  --format 'bestaudio/best' --audio-quality 0 -o '~/Downloads/Music/%(uploader)s/%(album)s/%(playlist_index)s - %(title)s.%(ext)s' --print '%(uploader)s - %(album)s - %(playlist_index)s %(title)s' --no-simulate";
-      :q = "exit";
+      # :q = "exit";
     };
   };
 
@@ -107,40 +104,34 @@
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    btop
-    cava
-    cmus
-    eza
-    fastfetch
-    flameshot
-    ghostty
-    git
-    helix
-    krabby
-    libreoffice
-    mullvad-vpn
-    nitrogen
-    picom
-    rofi
-    signal-desktop
-    tut
-    vivaldi
-    webcord
-    wget
-    yt-dlp
+    btop # terminal
+    cava # terminal
+    cmus # terminal
+    eza # terminal
+    fastfetch # terminal
+    flameshot # desktop
+    ghostty # default
+    git # user
+    helix # default
+    krabby # terminal
+    libreoffice #foobar
+    mullvad-vpn # pvt
+    nitrogen # desktop
+    picom # desktop
+    protonup-qt # gaming
+    rofi # desktop
+    signal-desktop # pvt
+    tut # terminal
+    vivaldi # default
+    webcord # gaming
+    wget # terminal
+    yt-dlp # terminal
   ];
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh.enable = true; # pvt
 
-services.avahi = {
-  enable = true;
-  nssmdns4 = true;
-  openFirewall = true;
-};
   system.stateVersion = "24.11"; # Did you read the comment?
 
 }
