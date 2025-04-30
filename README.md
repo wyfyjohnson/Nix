@@ -16,6 +16,7 @@ There are a few things you will need to do to get this flake working. If you are
 * internet access
 
 You will need to clone this repo:
-```git clone https://codeberg.org/wyfy/Nix`
 
-```cd Nix`
+```git clone https://codeberg.org/wyfy/Nix```
+
+```cd Nix```
