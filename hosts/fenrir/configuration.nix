@@ -124,6 +124,8 @@
     signal-desktop # pvt
     tut # terminal
     vivaldi # default
+    vscode-css-lang rust-analyzer gopls # projects language servers
+    marksman pyright gopls nil bash-language-server # language servers for config/default
     webcord # gaming
     wget # terminal
     yt-dlp # terminal
