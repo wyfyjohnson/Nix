@@ -22,7 +22,7 @@
               useUserPackages = true;
               backupFileExtension = ".bak";
             };
-          };
+          }
         ];
         home-manager.users.wyatt.imports = [ (import ./hosts/fenrir/home.nix) ];
       };
