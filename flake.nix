@@ -9,22 +9,22 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
       fenrir = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/fenrir/configuration.nix
-          # home-manager.nixosModules.home-manager
-          # {
-            # home-manager = {
-            #   useGlobalPkgs = true;
-            #   useUserPackages = true;
-            #   backupFileExtension = ".bak";
-            # };
-          # }
+          home-manager.nixosModules.home-manager
+          {
+          # home-manager = {
+          #   useGlobalPkgs = true;
+          #   useUserPackages = true;
+          #   backupFileExtension = ".bak";
+          # };
+          }
         ];
-        home-manager.users.wyatt.imports = [ (import ./hosts/fenrir/home.nix) ];
+        # home-manager.users.wyatt.imports = [ (import ./hosts/fenrir/home.nix) ];
       };
       jormungandr = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
