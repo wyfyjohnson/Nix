@@ -20,6 +20,9 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  #----- Wayland -----#
+  
+
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
