@@ -1,11 +1,13 @@
-
-{ config, pkgs, inputs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -18,10 +20,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   #----- Wayland -----#
-  
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -54,7 +55,6 @@
     nerd-fonts.jetbrains-mono
   ];
 
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -83,9 +83,9 @@
   users.users.wyatt = {
     isNormalUser = true;
     description = "wyatt";
-    extraGroups = [ "input" "video" "libvirtd" "networkmanager" "wheel" ];
+    extraGroups = ["input" "video" "libvirtd" "networkmanager" "wheel"];
     packages = with pkgs; [
-     ##they go here##
+      ##they go here##
     ];
   };
 
@@ -127,8 +127,14 @@
     signal-desktop # pvt
     tut # terminal
     vivaldi # default
-    vscode-langservers-extracted rust-analyzer gopls # projects language servers
-    marksman pyright gopls bash-language-server # language servers for config/default
+    vscode-langservers-extracted
+    rust-analyzer
+    gopls # projects language servers
+    marksman
+    pyright
+    gopls
+    nil
+    bash-language-server # language servers for config/default
     webcord # gaming
     wget # terminal
     yt-dlp # terminal
@@ -138,5 +144,4 @@
   services.openssh.enable = true; # pvt
 
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }

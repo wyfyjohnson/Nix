@@ -9,7 +9,12 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: {
     nixosConfigurations = {
       fenrir = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
@@ -17,12 +22,12 @@
           ./hosts/fenrir/configuration.nix
           home-manager.nixosModules.home-manager
           {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.wyatt = ./hosts/fenrir/home.nix;
-          #   backupFileExtension = ".bak";
-          };
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.wyatt = ./hosts/fenrir/home.nix;
+              #   backupFileExtension = ".bak";
+            };
           }
         ];
         # home-manager.users.wyatt.imports = [ (import ./hosts/fenrir/home.nix) ];
