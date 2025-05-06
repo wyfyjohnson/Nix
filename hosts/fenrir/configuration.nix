@@ -128,7 +128,7 @@
     tut # terminal
     vivaldi # default
     vscode-langservers-extracted rust-analyzer gopls # projects language servers
-    marksman pyright gopls nil bash-language-server # language servers for config/default
+    marksman pyright gopls bash-language-server # language servers for config/default
     webcord # gaming
     wget # terminal
     yt-dlp # terminal

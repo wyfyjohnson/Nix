@@ -1,5 +1,5 @@
 {
-  description = "Nixos config flake";
+  description = "Project Yggdrasil, flake for my systems";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -17,11 +17,12 @@
           ./hosts/fenrir/configuration.nix
           home-manager.nixosModules.home-manager
           {
-          # home-manager = {
-          #   useGlobalPkgs = true;
-          #   useUserPackages = true;
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.wyatt = ./hosts/fenrir/home.nix;
           #   backupFileExtension = ".bak";
-          # };
+          };
           }
         ];
         # home-manager.users.wyatt.imports = [ (import ./hosts/fenrir/home.nix) ];

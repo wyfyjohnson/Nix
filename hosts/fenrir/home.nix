@@ -8,9 +8,8 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    pkgs.hello
-
+  home.packages = with pkgs; [
+    libreoffice
   ];
 
   home.file = {
@@ -24,5 +23,35 @@
   programs.home-manager.enable = true;
 
   # Services
-  services.picom.enable = true;
+  services.picom = {
+    enable = true;
+    shadow = true;
+    # shadowOffsets = -7;
+    fade = true;
+    inactiveOpacity = 0.8;
+  };
+
+  #--- Shell ---#
+  home.shell.enableBashIntegration = true;
+  home.shellAliases = {
+    ls = "eza -1 --icons";
+    ff = "fastfetch";
+    jormungandr = "ssh wyatt@192.168.69.100";
+    yt-music="yt-dlp -x --audio-format opus --replace-in-metadata uploader ' - Topic' '' --parse-metadata '%(playlist_index)s:%(meta_track)s' --parse-metadata '%(uploader)s:%(meta_album_artist)s' --embed-metadata  --format 'bestaudio/best' --audio-quality 0 -o '~/Downloads/Music/%(uploader)s/%(album)s/%(playlist_index)s - %(title)s.%(ext)s' --print '%(uploader)s - %(album)s - %(playlist_index)s %(title)s' --no-simulate";
+  };
+
+  #--- Editor ---#
+  programs.helix.languages = {
+    language-server.rust-analyzer.config = {
+      checkOnSave.allTargets = true;
+    };
+    language-server.nixd = {
+      command = "nixd";
+      formatting = {
+        command = ["alejandra"];
+      };
+      nixpkgs.expr = "import (builtins.getFlake \"/home/wyatt/Projects/Nix\").inputs.nixpkgs { }";
+      options.nixos.expr = "(builtins.getFlake \"/home/wyatt/Projects/Nix\").nixosConfigurations.fenrir.options";
+    };
+  };
 }
